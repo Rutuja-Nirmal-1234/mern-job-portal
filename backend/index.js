@@ -28,6 +28,13 @@ const PORT = process.env.PORT;
 
 //api's
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "MERN Job Portal Backend is running 🚀",
+  });
+});
+
 app.use("/api/v1/user",userRoute);
 app.use("/api/v1/company",companyRoute);
 app.use("/api/v1/job",jobRoute);
