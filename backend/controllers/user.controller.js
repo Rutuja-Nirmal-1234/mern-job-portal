@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
-import path from 'path';
+import path from "path";
 
 export const register = async (req, res) => {
   try {
@@ -26,7 +26,7 @@ export const register = async (req, res) => {
 
     const file = req.file;
     const fileUri = getDataUri(file);
-    const cloudResponse = await cloudinary.uploader.upload(fileUri.content)
+    const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
@@ -44,9 +44,9 @@ export const register = async (req, res) => {
       phoneNumber,
       password: hashedPassword,
       role,
-      profile:{
-        profilePhoto:cloudResponse.secure_url,
-      }
+      profile: {
+        profilePhoto: cloudResponse.secure_url,
+      },
     });
 
     return res.status(201).json({
@@ -121,7 +121,8 @@ export const login = async (req, res) => {
       .cookie("token", token, {
         maxAge: 1 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "none",
+        secure: true,
       })
       .json({
         message: `Welcome back ${user.fullname}`,
@@ -145,7 +146,8 @@ export const logout = (req, res) => {
       .cookie("token", "", {
         maxAge: 0,
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "none",
+        secure: true,
       })
       .json({
         message: "logout successfully",
@@ -170,17 +172,17 @@ export const updateProfile = async (req, res) => {
 
     let cloudResponse;
 
-   if (file) {
-  const fileUri = getDataUri(file);
-  const fileName = path.parse(file.originalname).name;
+    if (file) {
+      const fileUri = getDataUri(file);
+      const fileName = path.parse(file.originalname).name;
 
-  cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
-    resource_type: "raw",
-    public_id: fileName,
-    use_filename: true,
-    unique_filename: false,
-  });
-}
+      cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
+        resource_type: "raw",
+        public_id: fileName,
+        use_filename: true,
+        unique_filename: false,
+      });
+    }
 
     let skillsArray;
 

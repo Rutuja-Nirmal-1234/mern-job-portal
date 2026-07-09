@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 app.use(cookieParser());
 const corsOptions = {
-  origin: true,
+  origin: "https://mern-job-portal-rose.vercel.app",
   credentials: true,
 };
 app.use(cors(corsOptions));
