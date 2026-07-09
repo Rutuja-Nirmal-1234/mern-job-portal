@@ -234,7 +234,7 @@ const Signup = () => {
                   onChange={changeEventHandler}
                   className="accent-violet-600"
                 />
-                Student
+                Candidate
               </label>
 
               <label

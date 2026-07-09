@@ -184,7 +184,7 @@ const Login = () => {
                   className="accent-violet-600"
                 />
 
-                <span className="font-medium">Student</span>
+                <span className="font-medium">Candidate</span>
               </label>
 
               <label
