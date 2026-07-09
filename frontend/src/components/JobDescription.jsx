@@ -36,6 +36,12 @@ export const JobDescription = () => {
   const [isApplied, setIsApplied] = useState(isIntiallyApplied);
 
   const applyJobHandler = async () => {
+    // ✅ Login check sabse pehle — guest ko API call se pehle hi rok do
+    if (!user) {
+      toast.error("Please login first to apply for this job");
+      return;
+    }
+
     try {
       const res = await axios.get(
         `${APPLICATION_API_END_POINT}/apply/${jobId}`,

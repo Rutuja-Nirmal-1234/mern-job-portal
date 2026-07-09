@@ -4,13 +4,10 @@ import { deleteJob, getAdminJobs, getAllJob, getJobById, postJob } from "../cont
 
 const router = express.Router();
 
-
-
 router.route("/post").post(isAutenticated, postJob);
-router.route("/get").get(isAutenticated, getAllJob);
+router.route("/get").get(getAllJob);              // ✅ guest bhi jobs browse kar sake
 router.route("/getadmin").get(isAutenticated, getAdminJobs);
-router.route("/get/:id").get(isAutenticated, getJobById);
+router.route("/get/:id").get(getJobById);          // ✅ guest bhi description dekh sake
 router.route("/:id").delete(isAutenticated, deleteJob);
 
 export default router;
-
