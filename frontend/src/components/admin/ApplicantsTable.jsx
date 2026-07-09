@@ -62,7 +62,11 @@ export const ApplicantsTable = () => {
       setLoadingId("");
     }
   };
-    
+
+  // Safe fallback: agar applications key exist nahi karti (API response abhi nahi aaya
+  // ya kisi wajah se missing hai), toh empty array treat karo taaki .map() crash na kare
+  const applicationsList = applicants?.applications || [];
+
   return (
     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
       <Table>
@@ -83,7 +87,7 @@ export const ApplicantsTable = () => {
         </TableHeader>
 
         <TableBody>
-          {applicants?.applications?.length === 0 ? (
+          {applicationsList.length === 0 ? (
             <TableRow>
               <TableCell colSpan={7} className="text-center py-12">
                 <div className="flex flex-col items-center gap-3">
@@ -98,7 +102,7 @@ export const ApplicantsTable = () => {
               </TableCell>
             </TableRow>
           ) : (
-            applicants.applications.map((application) => (
+            applicationsList.map((application) => (
               <TableRow
                 key={application._id}
                 className="hover:bg-violet-50 transition"
