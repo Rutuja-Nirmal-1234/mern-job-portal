@@ -27,9 +27,9 @@ export const Job = ({ job }) => {
           {daysAgo === 0 ? "Today" : `${daysAgo} days ago`}
         </p>
 
-        <Button variant="outline" className="rounded-full" size="icon">
+        {/* <Button variant="outline" className="rounded-full" size="icon">
           <Bookmark />
-        </Button>
+        </Button> */}
       </div>
 
       <div className="flex items-center gap-2 my-3">
@@ -82,9 +82,9 @@ export const Job = ({ job }) => {
           Details
         </Button>
 
-        <Button className="bg-[#7209b7] hover:bg-[#5f32a8]">
+        {/* <Button className="bg-[#7209b7] hover:bg-[#5f32a8]">
           Save For Later
-        </Button>
+        </Button> */}
       </div>
     </div>
   </div>
