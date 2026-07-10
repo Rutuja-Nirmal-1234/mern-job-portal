@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import { Avatar, AvatarImage } from "./ui/avatar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {
@@ -112,21 +113,32 @@ export const JobDescription = () => {
 
       <div className="max-w-7xl mx-auto my-10 px-4">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="font-bold text-xl">{singleJob?.title}</h1>
+          <div className="flex items-center gap-4">
+            {/* ✅ Company Logo */}
+            <Avatar className="h-14 w-14 border">
+              <AvatarImage src={singleJob?.company?.logo} />
+            </Avatar>
 
-            <div className="flex flex-wrap gap-2 mt-4">
-              <Badge className="text-blue-700 font-bold text-xs" variant="ghost">
-                {singleJob?.position} Positions
-              </Badge>
+            <div>
+              <h1 className="font-bold text-xl">{singleJob?.title}</h1>
 
-              <Badge className="text-[#F83002] font-bold text-xs" variant="ghost">
-                {singleJob?.jobType}
-              </Badge>
+              <p className="text-sm text-gray-500">
+                {singleJob?.company?.name}
+              </p>
 
-              <Badge className="text-[#7209b7] font-bold text-xs" variant="ghost">
-                {singleJob?.salary} LPA
-              </Badge>
+              <div className="flex flex-wrap gap-2 mt-2">
+                <Badge className="text-blue-700 font-bold text-xs" variant="ghost">
+                  {singleJob?.position} Positions
+                </Badge>
+
+                <Badge className="text-[#F83002] font-bold text-xs" variant="ghost">
+                  {singleJob?.jobType}
+                </Badge>
+
+                <Badge className="text-[#7209b7] font-bold text-xs" variant="ghost">
+                  {singleJob?.salary} LPA
+                </Badge>
+              </div>
             </div>
           </div>
 
@@ -143,7 +155,7 @@ export const JobDescription = () => {
           </Button>
         </div>
 
-        <h1 className="font-bold border-b-2 border-b-gray-200 py-4">
+        <h1 className="font-bold border-b-2 border-b-gray-200 py-4 mt-6">
           Job Description
         </h1>
 
@@ -169,7 +181,7 @@ export const JobDescription = () => {
             </span>
           </h1>
 
-          {/* ✅ Requirements / Skills section */}
+          {/* Requirements / Skills section */}
           <div className="font-bold my-1">
             Skills Required:
             {requirementsList.length > 0 ? (
