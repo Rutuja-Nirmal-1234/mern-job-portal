@@ -30,8 +30,7 @@ export const HeroSection = () => {
         </h1>
 
         <p className="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo
-          excepturi dolor autem delectus molestias natus.
+          Discover thousands of job opportunities, connect with top companies, and take the next step in your career.
         </p>
 
 
